@@ -1,1 +1,22 @@
+---
+- hosts: web-server
+ become: True
+ tasks:
+ - name: nginx install
+ yum:
+ name: nginx state: present
 
+ - name: Start Service
+ service:
+ name: service-name state: started enabled: yes
+
+ - name: Basic Template Example
+ template:
+ src: example1.j2
+ dest: /home/knoldus/Documents/Ansible/output.txt
+
+ - name: Unarchive a file that needs to be downloaded
+ unarchive:
+ src: https://example.com/example.zip
+ dest: /usr/local/bin
+ remote_src: yes
